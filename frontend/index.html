@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Summary Evaluation Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Summary Evaluation Dashboard</h1>
+
+      <div class="card">
+        <div class="row">
+          <div class="field">
+            <label for="modelSelect">Model</label>
+            <select id="modelSelect"></select>
+          </div>
+          <div class="field">
+            <label for="caseFilter">Show</label>
+            <select id="caseFilter">
+              <option value="all" selected>All cases</option>
+              <option value="ok">Only evaluated cases</option>
+              <option value="missing">Only missing predictions</option>
+            </select>
+          </div>
+        </div>
+        <p id="meta" class="muted"></p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h2>Entity Recall (mean)</h2>
+          <div id="entityRecallChart" class="chart"></div>
+        </div>
+        <div class="card">
+          <h2>ROUGE-L F1 (mean)</h2>
+          <div id="rougeChart" class="chart"></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Per-case Metrics</h2>
+        <div class="tableWrap">
+          <table id="perCaseTable">
+            <thead>
+              <tr>
+                <th>Case ID</th>
+                <th>Status</th>
+                <th>Entity Recall</th>
+                <th>ROUGE-L F1</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="foot muted">
+        Reads <code>results/summary.json</code> produced by the evaluation pipeline.
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
